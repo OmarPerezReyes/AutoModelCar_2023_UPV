@@ -1,0 +1,3 @@
+<launch> 
+    <node name="video_capture" pkg="video_capture" type="video_capture_node" output="screen"></node>
+</launch>
