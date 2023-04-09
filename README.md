@@ -45,3 +45,4 @@ Es necesario cargar las variables de entorno en cada terminal para el correcto f
 ```
 source devel/setup.zsh
 ```
+[Arquitectura propuesta para el vehículo autónomo](https://lucid.app/publicSegments/view/bd8d4c51-0755-41a0-af4e-4752ef2aff18/image.pdf)
