@@ -14,11 +14,13 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   std_msgs
   tf
+  autominy_msgs
+  bno055_usb_stick_msgs
 )
 
+find_package(OpenCV 3 REQUIRED)
 find_package(realsense2 REQUIRED)
-
-find_package(OpenCV)
+find_library(rplidar HINTS /usr/local/src/rplidar_sdk-master/)
 
 ## Generate messages in the 'msg' folder
 # add_message_files(
@@ -77,11 +79,12 @@ find_package(OpenCV)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-  INCLUDE_DIRS
+  INCLUDE_DIRS include
   LIBRARIES brake
   CATKIN_DEPENDS roscpp rospy std_msgs cv_bridge
-  #autominy_msgs
-  sensor_msgs
+  autominy_msgs
+  sensor_msgs 
+  bno055_usb_stick_msgs
 )
 
 ###########
@@ -97,10 +100,13 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(${PROJECT_NAME}_node src/${PROJECT_NAME}_node.cpp)
+add_executable(${PROJECT_NAME}_node src/imgfeatures.cpp src/kdtree.cpp src/minpq.cpp src/sift.cpp src/utils.cpp src/signal_detector_node.cpp)
 
 target_link_libraries(${PROJECT_NAME}_node 
   ${catkin_LIBRARIES} 
   ${realsense2_LIBRARY}
   ${OpenCV_LIBS}
 )
+
+
+

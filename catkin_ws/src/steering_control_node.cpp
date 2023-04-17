@@ -54,7 +54,8 @@ void stopCallback(const std_msgs::Bool msg){
 }
 
 
-void steering_calculate(float obs_rho, float obs_theta, float best_rho, float best_theta){
+void steering_calculate(float obs_rho, float obs_theta, float best_rho, float best_theta)
+{
     int speed;
     int steering;
    
@@ -66,7 +67,7 @@ void steering_calculate(float obs_rho, float obs_theta, float best_rho, float be
     }
 
     if (first_time) {
-        steering = 1520;
+        steering = 1470;
         steeringMsg.value = steering;
         pubSteering.publish(steeringMsg);
 
@@ -84,9 +85,8 @@ void laneCallback(const std_msgs::Float32MultiArray::ConstPtr& msg)
     steering_calculate(msg->data[0], msg->data[1], msg->data[2], msg->data[3]);
 }
 
-//
-int main(int argc, char* argv[]){
-
+int main(int argc, char* argv[])
+{
     ros::init(argc, argv, "steering_control_node");
     ros::NodeHandle n;
 
@@ -96,30 +96,37 @@ int main(int argc, char* argv[]){
     pubSpeed = n.advertise<autominy_msgs::SpeedPWMCommand>("/actuators/speed_pwm", 10);
 
     // This MUST be here
-    mssleep(500);
+    mssleep(100);
 
     pubSteering = n.advertise<autominy_msgs::SteeringPWMCommand>("/actuators/steering_pwm", 10);
 
     // This MUST be here
-    mssleep(500);
+    mssleep(100);
 
     autominy_msgs::SteeringPWMCommand steeringMsg;
     autominy_msgs::SpeedPWMCommand speedMsg;
 
     if (ros::ok()) {
 
+        fprintf(stdout, "Aquí entró\n");
+        fflush(stdout);
+
         autominy_msgs::SteeringPWMCommand steeringMsg;
-        int steering = 1440;
+        int steering = 1470;
         steeringMsg.value = static_cast<int16_t>(steering);
         pubSteering.publish(steeringMsg);
             
-        mssleep(200);
+        mssleep(100);
 
         int speed = 60;  
         speedMsg.value = speed;
         pubSpeed.publish(speedMsg);
 
-        mssleep(200);
+        mssleep(100);
+
+        fprintf(stdout, "Aquí salió\n");
+        fflush(stdout);
+
 
     }
     
