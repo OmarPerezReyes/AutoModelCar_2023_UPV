@@ -5,23 +5,18 @@
 
 #include <opencv2/opencv.hpp>
 
-cv::VideoWriter video("/home/ros/out.avi", cv::VideoWriter::fourcc('M','J','P','G'), 30,cv::Size(640,480));
-
-void my_handler(sig_atomic_t s){
-    std::cout<<"Grabación terminada"<<std::endl; 
-    video.release();
-    exit(1);
-}
+cv::VideoWriter video("/home/ros/source_code/Assets/out.avi", cv::VideoWriter::fourcc('M','J','P','G'), 30,cv::Size(640,480));
 
 void imageCallback(const sensor_msgs::Image::ConstPtr& msg)    
 {
     cv::Mat color(cv::Size(640, 480), CV_8UC3, (unsigned char*)msg->data.data(), cv::Mat::AUTO_STEP);
-/*    int key = cv::waitKey(1);
-    if(key==27){
-        std::cout << "Clic" <<std::endl;
-        video.release();            
+    int key = cv::waitKey(1);
+    if(key==32){
+        std::cout<<"Finished recording"<<std::endl; 
+        video.release();
+        exit(1);;            
     }
-  */  video.write(color);
+    video.write(color);
 
     cv::imshow("img", color);
     cv::waitKey(1);
@@ -32,11 +27,12 @@ int main(int argc, char** argv)
 
     ros::NodeHandle n;
 
-    ros::Subscriber sub = n.subscribe("/realsense/color_raw", 1000, imageCallback);
 
+    ros::Subscriber sub = n.subscribe("/realsense/color_raw", 1000, imageCallback);
+    std::cout<<"Clic space to save"<<std::endl;
 
     ros::spin(); 
-    signal (SIGINT, my_handler); 
+
     return 0;
 
 }
