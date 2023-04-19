@@ -22,18 +22,25 @@ rosrun package package_node
 ```
 
 ## Rutinas para el vehículo
->Grabación archivo [avi]
-```
-rosrun video_capture video_capture_node
-rosrun video_record video_record_node
-
-```
 >Navegación sin obstáculos
 ```
 rosrun video_capture video_capture_node
 rosrun line_detector line_detector_node
 rosrun signal_detector signal_detector
 rosrun steering_control steering_control
+
+```
+>Grabación archivo [avi]
+```
+rosrun video_capture video_capture_node
+rosrun video_record video_record_node
+
+```
+>Guardar frame [jpg]
+```
+rosrun video_capture video_capture_node
+rosrun frame_capture frame_capture_node
+
 ```
 
 ## Nota
