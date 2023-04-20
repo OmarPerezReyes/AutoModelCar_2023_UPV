@@ -29,7 +29,7 @@ int main(int argc, char** argv)
 
 
     ros::Subscriber sub = n.subscribe("/realsense/color_raw", 1000, imageCallback);
-    std::cout<<"Clic space to save"<<std::endl;
+    std::cout<<"Clic space in video to save"<<std::endl;
 
     ros::spin(); 
 
