@@ -94,7 +94,8 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
 //    int num_pixels = filter_red_color(orig);
 //    fprintf( stdout, "Found %d red pixels.\n",num_pixels);
 //    fflush(stdout);          
-    
+    //cv::Rect myROI(200,100,439,279);
+    //orig->image=orig->image(myROI);
     cv::cvtColor(orig->image, gray, cv::COLOR_BGR2GRAY);
 
     int x,y;

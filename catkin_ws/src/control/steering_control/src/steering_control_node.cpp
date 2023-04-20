@@ -14,9 +14,20 @@
 ros::Publisher pubSpeed;
 ros::Publisher pubSteering;
 
+autominy_msgs::SteeringPWMCommand steeringMsg;
+autominy_msgs::SpeedPWMCommand speedMsg;
+
 bool first_time = true;
 
 //
+
+void my_handler(sig_atomic_t s){
+    int speed = 0;  
+    speedMsg.value = speed;
+    pubSpeed.publish(speedMsg);
+    exit(1);
+}
+
 int mssleep(long milliseconds){
 
   struct timespec rem;
@@ -26,67 +37,43 @@ int mssleep(long milliseconds){
   };
 
   return nanosleep(&req, &rem); 
+}
 
+void steering_calculate(float obs_rho, float obs_theta, float best_rho, float best_theta){
+    int speed;
+    int steering;
+    //En espera del line detector
 }
 
 
 
 void stopCallback(const std_msgs::Bool msg){
-
   int speed;
 
-   autominy_msgs::SteeringPWMCommand steeringMsg;
-      autominy_msgs::SpeedPWMCommand speedMsg;
-
-   if (msg.data){
+  if (msg.data){
+        mssleep(3500);
         speed = 0;  
         speedMsg.value = speed;
         pubSpeed.publish(speedMsg);
-        mssleep(3000);
-   } else {
-        speed = 60;  
+        mssleep(4500);
+  } else {
+        speed = 40;  
         speedMsg.value = speed;
         pubSpeed.publish(speedMsg);
-        mssleep(100);
+        mssleep(200);
 
    }
-
 }
 
-
-void steering_calculate(float obs_rho, float obs_theta, float best_rho, float best_theta){
-    int speed;
-    int steering;
-   
-    autominy_msgs::SteeringPWMCommand steeringMsg;
-    autominy_msgs::SpeedPWMCommand speedMsg;
-
-    if (ros::ok()) {
-        speed = 50;  
-    }
-
-    if (first_time) {
-        steering = 1520;
-        steeringMsg.value = steering;
-        pubSteering.publish(steeringMsg);
-
-        speedMsg.value = speed;
-        pubSpeed.publish(speedMsg);
-
-        first_time = false;
-        
-    }
-
-}
 
 void laneCallback(const std_msgs::Float32MultiArray::ConstPtr& msg)
 {
     steering_calculate(msg->data[0], msg->data[1], msg->data[2], msg->data[3]);
 }
 
+
 //
 int main(int argc, char* argv[]){
-
     ros::init(argc, argv, "steering_control_node");
     ros::NodeHandle n;
 
@@ -95,34 +82,8 @@ int main(int argc, char* argv[]){
 
     pubSpeed = n.advertise<autominy_msgs::SpeedPWMCommand>("/actuators/speed_pwm", 10);
 
-    // This MUST be here
-    mssleep(500);
-
     pubSteering = n.advertise<autominy_msgs::SteeringPWMCommand>("/actuators/steering_pwm", 10);
-
-    // This MUST be here
-    mssleep(500);
-
-    autominy_msgs::SteeringPWMCommand steeringMsg;
-    autominy_msgs::SpeedPWMCommand speedMsg;
-
-    if (ros::ok()) {
-
-        autominy_msgs::SteeringPWMCommand steeringMsg;
-        int steering = 1440;
-        steeringMsg.value = static_cast<int16_t>(steering);
-        pubSteering.publish(steeringMsg);
-            
-        mssleep(200);
-
-        int speed = 60;  
-        speedMsg.value = speed;
-        pubSpeed.publish(speedMsg);
-
-        mssleep(200);
-
-    }
-    
+    signal(SIGINT,my_handler);
     ros::spin();
 
     return 0;
