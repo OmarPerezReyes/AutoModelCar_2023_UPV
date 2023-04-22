@@ -21,7 +21,6 @@ ros::Publisher pub_loss;
 
 cv::Mat image_roi;
 cv::Mat HLS;
-cv::Mat lightness;
 cv::Mat dx;
 cv::Mat dy;
 cv::Mat abs_dx;
@@ -129,12 +128,9 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
        int y_center = (int)round(temp_output.rows/(double)2.0);       
                      
        int max_lines = 4;
-       // Para procesar sólo un máximo de                      
-       // lineas indicado por max_lines 
+       // Para procesar sólo un máximo de lineas indicado por max_lines 
        if (linesP.size() < max_lines) 
          max_lines = linesP.size();
-         
-       //max_lines = linesP.size();  
                      
        for( size_t i = 0; i < max_lines; i++ ){
            cv::Vec4i l = linesP[i];
@@ -293,10 +289,10 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
       
        // right avr rho: 202.939646 right avr theta: 0.785398
        // left avr rho: 214.442498 left avr theta: 2.356194
-       double goal_rho_r = 202.939646; // Golden reference right
-       double goal_theta_r = 0.785398; // Golden reference right
-       double goal_rho_l = 214.442498; // Golden reference left
-       double goal_theta_l = 2.356194; // Golden reference left
+       double goal_rho_r = 152.939646; // Golden reference right, 202.939646
+       double goal_theta_r = 0.285398; // Golden reference right, 0.785398
+       double goal_rho_l =164.442498; // Golden reference left, 214.442498
+       double goal_theta_l = 1.856194; // Golden reference left, 2.356194
 
       //cv::imshow("Original video", orig);
        cv::imshow("Image roi", image_roi);  
