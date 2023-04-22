@@ -1,3 +1,5 @@
 <launch> 
     <node name="video_capture" pkg="video_capture" type="video_capture_node" output="screen"></node>
+    <node name="line_detector" pkg="line_detector" type="line_detector_node" output="screen"></node>
+    <node name="steering_control" pkg="steering_control" type="steering_control_node" output="screen"></node>
 </launch>
