@@ -68,6 +68,17 @@ void stopCallback(const std_msgs::Bool msg){
    }
 }
 
+void lossCallback(const std_msgs::Bool msg){
+  int steering;
+
+  /*if (msg.data){
+        mssleep(sleep_msec);
+        steering = STEERING_CENTER;
+        steeringMsg.value = static_cast<int16_t>(steering);
+        pubSteering.publish(steeringMsg);
+        mssleep(sleep_msec);
+  }*/
+}
 
 void right_line_callback(const std_msgs::Float32MultiArray::ConstPtr& msg){
 
@@ -107,8 +118,8 @@ int main(int argc, char* argv[]){
  double error_theta_l = 0.0;
  double error_rho = 0.0;
  double error_theta = 0.0;       
- double steer = 1440;
- int steering = 1440;
+ double steer = STEERING_CENTER;
+ int steering = STEERING_CENTER;
  double k_rho = 0.001; // Proportional constant (This value  MUST BE TUNED)
  double k_theta = 0.01; // Proportional constant (This value  MUST BE TUNED)
 
@@ -120,6 +131,7 @@ int main(int argc, char* argv[]){
     ros::Subscriber sub_left_line = n.subscribe("/line_left", 1, 
                                          left_line_callback);
     ros::Subscriber stop = n.subscribe("/bool_stop", 1, stopCallback);
+    ros::Subscriber loss = n.subscribe("/bool_loss", 1, lossCallback);
 
     pubSpeed = n.advertise<autominy_msgs::SpeedPWMCommand>("/actuators/speed_pwm",
               10);
@@ -172,31 +184,18 @@ int main(int argc, char* argv[]){
        // error_rho: -65.729876 error_theta: 0.191362
        steer = (-k_rho*error_rho 
                    - k_theta*error_theta) * 100;   
-       fprintf(stdout, "Primer steer: %lf\n", steer);
-       fflush(stdout);
-
        steer *= -47;
-
-       fprintf(stdout, "Segundo steer: %lf\n", steer);
-       fflush(stdout);
-
        steer += STEERING_CENTER;
 
-       fprintf(stdout, "Tercer steer: %lf\n", steer);
-       fflush(stdout);
-  
-       if (steer > 2060){
+       if (steer > 2060)
           steer = 2060;
-       }
-       if (steer < 880){
-          steer = 880;  
-       }   
+       if (steer < 880)
+          steer = 880;
 
        steering = round(steer);
-   
+       
        fprintf(stdout, "steering: %d steer: %lf\n", steering, steer);
        fflush(stdout);
-
 
 /*
        fprintf(stdout, "error_rho_r: %lf error_theta_r: %lf\n",
