@@ -1,0 +1,41 @@
+Linea recta
+Right: 184.083389 0.639210 152.939651 0.285398
+Left: 0.000000 0.000000 164.442505 1.856194
+steering: 1603 steer: 1603.004722
+error_rho_r: 31.143738 error_theta_r: 0.353812
+error_rho_l: 164.442505 error_theta_l: 1.856194
+error_rho: 31.143738 error_theta: 0.353812
+-----------------------------------------------
+Curva izq
+Right: 86.346306 1.080450 152.939651 0.285398
+Left: 0.000000 0.000000 164.442505 1.856194
+steering: 1164 steer: 1164.378739
+error_rho_r: -66.593346 error_theta_r: 0.795052
+error_rho_l: 164.442505 error_theta_l: 1.856194
+error_rho: -66.593346 error_theta: 0.795052
+error_rho: .066593346 - error_theta: .00795052
+-----------------------------------------------
+Curva derecha
+Right: 8.090123 -1.118487 152.939651 0.285398
+Left: 0.000000 0.000000 164.442505 1.856194
+steering: 989 steer: 988.534314
+error_rho_r: -144.849528 error_theta_r: 4.879300
+error_rho_l: 164.442505 error_theta_l: 1.856194
+error_rho: -144.849528 error_theta: 4.879300
+error_rho: 0.144849528 - error_theta: 0.04879300
+--------------------------------------------
+
+
+Right: 1.099774 -1.153006 152.939651 0.285398
+Left: 3.642052 2.014377 164.442505 1.856194
+steering: 2060 steer: 2060.000000
+error_rho_r: -151.839877 error_theta_r: 4.844782
+error_rho_l: 160.800453 error_theta_l: -0.158183
+error_rho: 160.800453 error_theta: -0.158183
+Right: 3.683383 -1.107159 152.939651 0.285398
+Left: 0.000000 0.000000 164.442505 1.856194
+steering: 968 steer: 968.355048
+error_rho_r: -149.256269 error_theta_r: 4.890628
+error_rho_l: 164.442505 error_theta_l: 1.856194
+error_rho: -149.256269 error_theta: 4.890628
+
