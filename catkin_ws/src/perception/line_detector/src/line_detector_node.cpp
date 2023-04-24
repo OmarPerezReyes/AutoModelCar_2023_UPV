@@ -18,6 +18,7 @@
 ros::Publisher pub_right_line;
 ros::Publisher pub_left_line;
 ros::Publisher pub_loss; 
+ros::Publisher pub_junction; 
 
 cv::Mat image_roi;
 cv::Mat HLS;
@@ -43,6 +44,7 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
   float best_rho_pub = 0;
   float best_theta_pub = 0;  
   bool line_loss = true;
+  bool road_junction = false;
 
   cv_bridge::CvImagePtr orig;
 
@@ -55,7 +57,7 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
        return;
   }
 
-  std_msgs::Bool bool_msg;
+  std_msgs::Bool loss_msg, junction_msg;
   std_msgs::Float32MultiArray right_line_msg;
   std_msgs::Float32MultiArray left_line_msg;
 
@@ -195,10 +197,16 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
                     cv::Point(x2, y2), cv::Scalar(255,255,0), 3,
                                  cv::LINE_AA);                  
                                                     
-           } else {
+           } else 
+           if ((theta > -(M_PI/2 + 0.11) && theta < -(M_PI/2-0.04)) 
+             || (theta > (M_PI/2-0.04) && theta < (M_PI/2 + 0.11))){
+              //fprintf(stdout, "theta %lf\n", theta);
+              //fflush(stdout); 
               cv::line( temp_color, cv::Point(x1, y1), 
                     cv::Point(x2, y2), cv::Scalar(50,255,50), 
-                              3, cv::LINE_AA);                        
+                              3, cv::LINE_AA);
+
+              road_junction = true;                        
            } 
            
        } // end for size_t i = 0      
@@ -295,7 +303,7 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
        double goal_theta_l = 1.856194; // Golden reference left, 2.356194
 
       //cv::imshow("Original video", orig);
-       cv::imshow("Image roi", image_roi);  
+       // cv::imshow("Image roi", image_roi);  
        //cv::imshow("HLS video", HLS);    
        //cv::imshow("Sobel x", dx);
        //cv::imshow("Sobel y", dy);
@@ -314,8 +322,11 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
 
   // End image processing 
 
-  bool_msg.data = line_loss;    
-  pub_loss.publish(bool_msg);
+  loss_msg.data = line_loss;    
+  pub_loss.publish(loss_msg);
+
+  junction_msg.data = road_junction;    
+  pub_junction.publish(junction_msg);
 
   right_line_msg.data.push_back(right_mean_rho);
   right_line_msg.data.push_back(right_mean_theta);
@@ -331,6 +342,7 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
   pub_left_line.publish(left_line_msg);
 
   line_loss = true;
+  road_junction = false;
 
 }
 
@@ -346,6 +358,8 @@ int main(int argc, char **argv)
     pub_right_line = n.advertise<std_msgs::Float32MultiArray>("/line_right", 1);
     pub_left_line = n.advertise<std_msgs::Float32MultiArray>("/line_left", 1);
     pub_loss = n.advertise<std_msgs::Bool>("/bool_loss", 1);
+    pub_junction = n.advertise<std_msgs::Bool>("/bool_junction", 1);
+
     ros::spin(); 
 
     return 0;

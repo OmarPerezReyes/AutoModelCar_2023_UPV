@@ -81,6 +81,8 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
   // Sift 
   struct feature *current_feat = NULL;  
 
+  int matches = 0;
+
   cv::Mat gray;  
   // Define the images that will be used first
 
@@ -123,7 +125,7 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
        // Proceed with detection 
        int i;
        for (i = 0; i < NUM_SIGNS; i++){
-           int matches = 0;    
+           matches = 0;    
 
            kd_root = kdtree_build( current_feat, num_current_feat );
            int j = 0;
@@ -142,18 +144,10 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
                free( nbrs );
            } // ( j = 0; j < num_sign_feat[i])
 
+
            fprintf (stdout, "Num matches %s: %d\n", signs[i], matches); 
            fflush(stdout);
 
-           if ( matches > 7){
-              bool_msg.data = true; // stop
-              pub_stop.publish(bool_msg); 
-           } else {
-               bool_msg.data = false; // go
-               pub_stop.publish(bool_msg); 
-
-           }   
-           
            kdtree_release(kd_root);  
 
        } // (i = 0; i < NUM_SIGNS; i++)
@@ -161,12 +155,20 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
     } // (num_current_feat > 0)
    
    
+    if ( matches > 7){
+       bool_msg.data = true; // stop
+               
+    }
+
+    pub_stop.publish(bool_msg);  
+
+    bool_msg.data = false; // go
+
     // Display elapsed time  
     fprintf (stdout, "Detection loop took %.2f s\n", elapsed_time()); 
     fflush(stdout);
 
     draw_features( orig->image, current_feat, num_current_feat );
-
 
     cv::imshow("Original image", orig->image);         
     cv::waitKey(1); 
@@ -222,7 +224,7 @@ int main(int argc, char **argv){
   fflush(stdout); 
 
   ros::Subscriber sub = n.subscribe("/realsense/color_raw", 1, imageCallback);
-  pub_stop = n.advertise<std_msgs::Bool>("/bool_stop", 10);
+  pub_stop = n.advertise<std_msgs::Bool>("/bool_stop", 1);
 
   ros::spin(); 
 

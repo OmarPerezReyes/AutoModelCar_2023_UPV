@@ -30,6 +30,8 @@ double goal_theta_l = 0.0; // Golden reference left
 double left_mean_rho = 0.0;
 double left_mean_theta = 0.0;
 
+bool road_junction = false;
+
 //
 void my_handler(sig_atomic_t s){
     int speed = 0;  
@@ -48,6 +50,15 @@ int mssleep(long milliseconds){
 
   return nanosleep(&req, &rem); 
 }
+
+
+void junctionCallback(const std_msgs::Bool msg){
+  int speed;
+
+   road_junction = msg.data;
+
+}
+
 
 
 void stopCallback(const std_msgs::Bool msg){
@@ -132,6 +143,7 @@ int main(int argc, char* argv[]){
                                          left_line_callback);
     ros::Subscriber stop = n.subscribe("/bool_stop", 1, stopCallback);
     ros::Subscriber loss = n.subscribe("/bool_loss", 1, lossCallback);
+    ros::Subscriber junction = n.subscribe("/bool_junction", 1, junctionCallback);
 
     pubSpeed = n.advertise<autominy_msgs::SpeedPWMCommand>("/actuators/speed_pwm",
               10);
@@ -206,9 +218,19 @@ int main(int argc, char* argv[]){
                   error_rho, error_theta); 
 */       
 
+       if (road_junction){
+
+          fprintf(stdout, "JUnction is true\n");
+          fflush(stdout);   
+          steering = STEERING_CENTER;
+          mssleep(1600);
+       }
+
        autominy_msgs::SteeringPWMCommand steeringMsg;
        steeringMsg.value = static_cast<int16_t>(steering);
        pubSteering.publish(steeringMsg);
+
+       road_junction = false;
 
        ros::spinOnce();
 
