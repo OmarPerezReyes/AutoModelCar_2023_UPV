@@ -163,6 +163,11 @@ int main(int argc, char* argv[]){
     mssleep(sleep_msec);
     
     while (ros::ok()){
+     if (right_mean_theta != 0 || left_mean_theta != 0){
+      
+       if (right_mean_theta < 0){ 
+           right_mean_theta += 2 * M_PI;
+       }
 
        error_rho_r = right_mean_rho - goal_rho_r;
        error_theta_r = right_mean_theta - goal_theta_r;
@@ -185,16 +190,31 @@ int main(int argc, char* argv[]){
        }        
 */
 
-       error_rho   = error_rho_r;
+       error_rho  = error_rho_r;
        error_theta = error_theta_r;       
+       int sign = -1;
+       if (right_mean_rho < 55 && left_mean_rho == 0 && right_mean_theta < 0){
+          sign = 1; 
+       }
+
+
+       fprintf(stdout, "Sign: %d\n", sign);
+       fflush(stdout);
   
        if (left_mean_rho != 0){
           error_rho   = error_rho_l;
           error_theta = error_theta_l;       
+       }  
+
+/*
+       if (error_rho < 0){
+          error_rho   *= -1;
        }     
+*/
+
 
        // error_rho: -65.729876 error_theta: 0.191362
-       steer = (-k_rho*error_rho 
+       steer = (sign * k_rho*error_rho 
                    - k_theta*error_theta) * 100;   
        steer *= -47;
        steer += STEERING_CENTER;
@@ -209,34 +229,35 @@ int main(int argc, char* argv[]){
        fprintf(stdout, "steering: %d steer: %lf\n", steering, steer);
        fflush(stdout);
 
-/*
+
        fprintf(stdout, "error_rho_r: %lf error_theta_r: %lf\n",
                   error_rho_r, error_theta_r);    
        fprintf(stdout, "error_rho_l: %lf error_theta_l: %lf\n",
                   error_rho_l, error_theta_l);                      
        fprintf(stdout, "error_rho: %lf error_theta: %lf\n",
                   error_rho, error_theta); 
-*/       
+     
+     } // if (right_mean_theta != 0 || left_mean_theta != 0)  
 
-       if (road_junction){
+     if (road_junction){
 
-          fprintf(stdout, "JUnction is true\n");
-          fflush(stdout);   
-          steering = STEERING_CENTER;
-          mssleep(1600);
-       }
+       fprintf(stdout, "JUnction is true\n");
+       fflush(stdout);   
+       steering = STEERING_CENTER;
+       mssleep(1600);
+     }
 
-       autominy_msgs::SteeringPWMCommand steeringMsg;
-       steeringMsg.value = static_cast<int16_t>(steering);
-       pubSteering.publish(steeringMsg);
+     autominy_msgs::SteeringPWMCommand steeringMsg;
+     steeringMsg.value = static_cast<int16_t>(steering);
+     pubSteering.publish(steeringMsg);
 
-       road_junction = false;
+     road_junction = false;
 
-       ros::spinOnce();
+     ros::spinOnce();
 
-       mssleep(sleep_msec);
+     mssleep(sleep_msec);
 
-    }
+   } // End while
 
 
     return 0;
