@@ -22,23 +22,15 @@ autominy_msgs::SpeedPWMCommand speedMsg;
 
 double goal_rho_r = 0.0; // Golden reference right
 double goal_theta_r = 0.0; // Golden reference right
-double right_mean_rho = 0.0;
-double right_mean_theta = 0.0;
+double rho_r = 0.0;
+double theta_r = 0.0;
 
 double goal_rho_l = 0.0; // Golden reference left
 double goal_theta_l = 0.0; // Golden reference left
-double left_mean_rho = 0.0;
-double left_mean_theta = 0.0;
+double rho_l = 0.0;
+double theta_l = 0.0;
 
 bool road_junction = false;
-
-//
-void my_handler(sig_atomic_t s){
-    int speed = 0;  
-    speedMsg.value = speed;
-    pubSpeed.publish(speedMsg);
-    exit(1);
-}
 
 int mssleep(long milliseconds){
 
@@ -51,6 +43,19 @@ int mssleep(long milliseconds){
   return nanosleep(&req, &rem); 
 }
 
+
+void my_handler(sig_atomic_t s){
+    int speed = 0;  
+    
+    speedMsg.value = speed;
+    pubSpeed.publish(speedMsg);
+    mssleep(sleep_msec);
+    int steering = STEERING_CENTER;
+    steeringMsg.value = static_cast<int16_t>(steering);
+    pubSteering.publish(steeringMsg);
+        
+    exit(1);
+}
 
 void junctionCallback(const std_msgs::Bool msg){
   int speed;
@@ -93,8 +98,8 @@ void lossCallback(const std_msgs::Bool msg){
 
 void right_line_callback(const std_msgs::Float32MultiArray::ConstPtr& msg){
 
-  right_mean_rho = msg->data[0];
-  right_mean_theta = msg->data[1]; 
+  rho_r = msg->data[0];
+  theta_r = msg->data[1]; 
   goal_rho_r = msg->data[2]; // Golden reference right
   goal_theta_r = msg->data[3]; // Golden reference right
 
@@ -106,8 +111,8 @@ void right_line_callback(const std_msgs::Float32MultiArray::ConstPtr& msg){
 
 void left_line_callback(const std_msgs::Float32MultiArray::ConstPtr& msg){
 
-  left_mean_rho = msg->data[0];
-  left_mean_theta = msg->data[1]; 
+  rho_l = msg->data[0];
+  theta_l = msg->data[1]; 
   goal_rho_l = msg->data[2]; // Golden reference right
   goal_theta_l = msg->data[3]; // Golden reference right
 
@@ -163,88 +168,77 @@ int main(int argc, char* argv[]){
     mssleep(sleep_msec);
     
     while (ros::ok()){
-     if (right_mean_theta != 0 || left_mean_theta != 0){
-      
-       if (right_mean_theta < 0){ 
-           right_mean_theta += 2 * M_PI;
-       }
 
-       error_rho_r = right_mean_rho - goal_rho_r;
-       error_theta_r = right_mean_theta - goal_theta_r;
-       error_rho_l = goal_rho_l - left_mean_rho;
-       error_theta_l = goal_theta_l - left_mean_theta;
-       error_rho = 0.0;
-       error_theta = 0.0;       
-  
-       /*if (right_mean_rho != 0 && left_mean_rho != 0){
-          error_rho   = (error_rho_l + error_rho_r)/2;
-          error_theta = (error_theta_l + error_theta_r)/2; 
-       } else 
-       if (right_mean_rho != 0){
-          error_rho   = error_rho_r;
-          error_theta = error_theta_r;       
-       } else 
-       if (left_mean_rho != 0){
-          error_rho   = error_rho_l;
-          error_theta = error_theta_l;       
-       }        
+     //if (theta_r < 0) theta_r += 2 * M_PI;
+/*
+     rho_r = 67.276276;
+     theta_r = -1.150287;
+     goal_rho_r = 152.939651;
+     goal_theta_r = 0.285398;
 */
+     if (theta_r != 0 || theta_l != 0){
+      
+       error_rho_r = rho_r - goal_rho_r;
+       error_theta_r = theta_r - goal_theta_r;
+       error_rho_l = goal_rho_l - rho_l;
+       error_theta_l = goal_theta_l - theta_l;
 
+       fprintf(stdout, "rho_r: %lf\n", rho_r);
+       fprintf(stdout, "theta_r: %lf\n", theta_r);
+       fprintf(stdout, "goal_rho_r: %lf\n", goal_rho_r);
+       fprintf(stdout, "goal_theta_r: %lf\n", goal_theta_r);
+       fprintf(stdout, "error_rho_r: %lf\n", error_rho_r);
+       fprintf(stdout, "error_theta_r: %lf\n", error_theta_r);
+       fflush(stdout);
+
+       //error_rho = 0.0;
+       //error_theta = 0.0;       
+  
        error_rho  = error_rho_r;
-       error_theta = error_theta_r;       
-       int sign = -1;
-       if (right_mean_rho < 55 && left_mean_rho == 0 && right_mean_theta < 0){
-          sign = 1; 
-       }
+       error_theta = error_theta_r;  
 
+       fprintf(stdout, "error_rho: %lf\n", error_rho);
+       fprintf(stdout, "error_theta: %lf\n", error_theta);
+       fflush(stdout);
+
+       int sign = 1;
+       if (theta_r < 0) sign = -1;
 
        fprintf(stdout, "Sign: %d\n", sign);
        fflush(stdout);
-  
-       if (left_mean_rho != 0){
+
+       if (rho_l != 0){
           error_rho   = error_rho_l;
           error_theta = error_theta_l;       
+          sign = 1;
        }  
-
-/*
-       if (error_rho < 0){
-          error_rho   *= -1;
-       }     
-*/
-
-
+	
        // error_rho: -65.729876 error_theta: 0.191362
-       steer = (sign * k_rho*error_rho 
-                   - k_theta*error_theta) * 100;   
-       steer *= -47;
-       steer += STEERING_CENTER;
+       steer = k_rho * error_rho + k_theta * error_theta;   
+       steer *= 100;
+       steer *= 47;
 
-       if (steer > 2060)
-          steer = 2060;
-       if (steer < 880)
-          steer = 880;
+       fprintf(stdout, "Steer original: %lf\n", steer);
+       fflush(stdout);
+
+       steer = STEERING_CENTER + sign * steer;
 
        steering = round(steer);
+
+       if (steering > 2060) steering = 2060;
+       if (steering < 880) steering = 880;
        
        fprintf(stdout, "steering: %d steer: %lf\n", steering, steer);
        fflush(stdout);
-
-
-       fprintf(stdout, "error_rho_r: %lf error_theta_r: %lf\n",
-                  error_rho_r, error_theta_r);    
-       fprintf(stdout, "error_rho_l: %lf error_theta_l: %lf\n",
-                  error_rho_l, error_theta_l);                      
-       fprintf(stdout, "error_rho: %lf error_theta: %lf\n",
-                  error_rho, error_theta); 
-     
-     } // if (right_mean_theta != 0 || left_mean_theta != 0)  
+   
+     } // if (theta_r != 0 || theta_l != 0)  
 
      if (road_junction){
 
-       fprintf(stdout, "JUnction is true\n");
+       fprintf(stdout, "Junction is true\n");
        fflush(stdout);   
        steering = STEERING_CENTER;
-       mssleep(1600);
+       mssleep(500);
      }
 
      autominy_msgs::SteeringPWMCommand steeringMsg;
@@ -257,6 +251,8 @@ int main(int argc, char* argv[]){
 
      mssleep(sleep_msec);
 
+     //break;
+ 
    } // End while
 
 
