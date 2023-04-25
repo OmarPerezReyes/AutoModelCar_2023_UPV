@@ -1,0 +1,332 @@
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 130.754974 2.356194 164.442505 1.856194
+Sign: -1
+steering: 1575 steer: 1574.831371
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 33.687531 error_theta_l: -0.500000
+error_rho: 33.687531 error_theta: -0.500000
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 117.282745 2.269334 164.442505 1.856194
+Sign: -1
+steering: 1642 steer: 1642.233287
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 47.159760 error_theta_l: -0.413140
+error_rho: 47.159760 error_theta: -0.413140
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 129.811371 2.356194 164.442505 1.856194
+Sign: -1
+steering: 1579 steer: 1579.266308
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 34.631134 error_theta_l: -0.500000
+error_rho: 34.631134 error_theta: -0.500000
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 129.473923 2.356194 164.442505 1.856194
+Sign: -1
+steering: 1581 steer: 1580.852314
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 34.968582 error_theta_l: -0.500000
+error_rho: 34.968582 error_theta: -0.500000
+Sign: -1
+steering: 1581 steer: 1580.852314
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 34.968582 error_theta_l: -0.500000
+error_rho: 34.968582 error_theta: -0.500000
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 125.369873 2.340874 164.442505 1.856194
+Sign: -1
+steering: 1601 steer: 1600.861401
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 39.072632 error_theta_l: -0.484680
+error_rho: 39.072632 error_theta: -0.484680
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 129.892365 2.356194 164.442505 1.856194
+Sign: -1
+steering: 1579 steer: 1578.885637
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 34.550140 error_theta_l: -0.500000
+error_rho: 34.550140 error_theta: -0.500000
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 129.611343 2.356194 164.442505 1.856194
+Sign: -1
+steering: 1580 steer: 1580.206437
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 34.831161 error_theta_l: -0.500000
+error_rho: 34.831161 error_theta: -0.500000
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 128.741959 2.356194 164.442505 1.856194
+Sign: -1
+steering: 1584 steer: 1584.292545
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 35.700546 error_theta_l: -0.500000
+error_rho: 35.700546 error_theta: -0.500000
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 130.839371 2.356194 164.442505 1.856194
+Sign: -1
+steering: 1574 steer: 1574.434708
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 33.603134 error_theta_l: -0.500000
+error_rho: 33.603134 error_theta: -0.500000
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 129.115387 2.356194 164.442505 1.856194
+Sign: -1
+steering: 1583 steer: 1582.537432
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 35.327118 error_theta_l: -0.500000
+error_rho: 35.327118 error_theta: -0.500000
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 128.761780 2.341077 164.442505 1.856194
+Sign: -1
+steering: 1585 steer: 1584.909904
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 35.680725 error_theta_l: -0.484883
+error_rho: 35.680725 error_theta: -0.484883
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 114.404549 2.271284 164.442505 1.856194
+Sign: -1
+steering: 1656 steer: 1655.669183
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 50.037956 error_theta_l: -0.415090
+error_rho: 50.037956 error_theta: -0.415090
+Sign: -1
+steering: 1656 steer: 1655.669183
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 50.037956 error_theta_l: -0.415090
+error_rho: 50.037956 error_theta: -0.415090
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 100.942268 2.207572 164.442505 1.856194
+Sign: -1
+steering: 1722 steer: 1721.936358
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 63.500237 error_theta_l: -0.351378
+error_rho: 63.500237 error_theta: -0.351378
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 86.041710 2.127175 164.442505 1.856194
+Sign: -1
+steering: 1796 steer: 1795.747637
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 78.400795 error_theta_l: -0.270981
+error_rho: 78.400795 error_theta: -0.270981
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 88.539162 2.151726 164.442505 1.856194
+Sign: -1
+steering: 1783 steer: 1782.855687
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 75.903343 error_theta_l: -0.295532
+error_rho: 75.903343 error_theta: -0.295532
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 81.382416 2.129527 164.442505 1.856194
+Sign: -1
+steering: 1818 steer: 1817.535753
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 83.060089 error_theta_l: -0.273333
+error_rho: 83.060089 error_theta: -0.273333
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 80.564713 2.131095 164.442505 1.856194
+Sign: -1
+steering: 1821 steer: 1821.305292
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 83.877792 error_theta_l: -0.274901
+error_rho: 83.877792 error_theta: -0.274901
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 85.532494 2.149914 164.442505 1.856194
+Sign: -1
+steering: 1797 steer: 1797.072235
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 78.910011 error_theta_l: -0.293720
+error_rho: 78.910011 error_theta: -0.293720
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 81.625565 2.110010 164.442505 1.856194
+Sign: -1
+steering: 1817 steer: 1817.310284
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 82.816940 error_theta_l: -0.253816
+error_rho: 82.816940 error_theta: -0.253816
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 71.646805 2.038090 164.442505 1.856194
+Sign: -1
+steering: 1868 steer: 1867.590691
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 92.795700 error_theta_l: -0.181896
+error_rho: 92.795700 error_theta: -0.181896
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 73.741364 2.059130 164.442505 1.856194
+Sign: -1
+steering: 1857 steer: 1856.757364
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 90.701141 error_theta_l: -0.202936
+error_rho: 90.701141 error_theta: -0.202936
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 75.692474 2.073684 164.442505 1.856194
+Sign: -1
+steering: 1847 steer: 1846.903138
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 88.750031 error_theta_l: -0.217489
+error_rho: 88.750031 error_theta: -0.217489
+Sign: -1
+steering: 1847 steer: 1846.903138
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 88.750031 error_theta_l: -0.217489
+error_rho: 88.750031 error_theta: -0.217489
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 76.185257 2.070449 164.442505 1.856194
+Sign: -1
+steering: 1845 steer: 1844.739087
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 88.257248 error_theta_l: -0.214255
+error_rho: 88.257248 error_theta: -0.214255
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 79.762032 2.093730 164.442505 1.856194
+Sign: -1
+steering: 1827 steer: 1826.834012
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 84.680473 error_theta_l: -0.237536
+error_rho: 84.680473 error_theta: -0.237536
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 72.801193 2.036427 164.442505 1.856194
+Sign: -1
+steering: 1862 steer: 1862.243214
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 91.641312 error_theta_l: -0.180233
+error_rho: 91.641312 error_theta: -0.180233
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 73.760895 2.038320 164.442505 1.856194
+Sign: -1
+steering: 1858 steer: 1857.643655
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 90.681610 error_theta_l: -0.182126
+error_rho: 90.681610 error_theta: -0.182126
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 67.429482 1.994873 164.442505 1.856194
+Sign: -1
+steering: 1889 steer: 1889.443318
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 97.013023 error_theta_l: -0.138679
+error_rho: 97.013023 error_theta: -0.138679
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 70.753365 2.027545 164.442505 1.856194
+Sign: -1
+steering: 1872 steer: 1872.285476
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 93.689140 error_theta_l: -0.171351
+error_rho: 93.689140 error_theta: -0.171351
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 69.797768 2.026271 164.442505 1.856194
+Sign: -1
+steering: 1877 steer: 1876.836631
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 94.644737 error_theta_l: -0.170077
+error_rho: 94.644737 error_theta: -0.170077
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 67.701614 2.008018 164.442505 1.856194
+Sign: -1
+steering: 1888 steer: 1887.546435
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 96.740891 error_theta_l: -0.151824
+error_rho: 96.740891 error_theta: -0.151824
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 60.832153 1.942382 164.442505 1.856194
+Sign: -1
+steering: 1923 steer: 1922.917841
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 103.610352 error_theta_l: -0.086187
+error_rho: 103.610352 error_theta: -0.086187
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 65.680786 2.009087 164.442505 1.856194
+Sign: -1
+steering: 1897 steer: 1896.994093
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 98.761719 error_theta_l: -0.152893
+error_rho: 98.761719 error_theta: -0.152893
+Sign: -1
+steering: 1897 steer: 1896.994093
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 98.761719 error_theta_l: -0.152893
+error_rho: 98.761719 error_theta: -0.152893
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 63.527332 1.994830 164.442505 1.856194
+Sign: -1
+steering: 1908 steer: 1907.785419
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 100.915173 error_theta_l: -0.138636
+error_rho: 100.915173 error_theta: -0.138636
+JUnction is true
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 55.658630 2.005850 164.442505 1.856194
+Sign: -1
+steering: 1944 steer: 1944.250376
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 108.783875 error_theta_l: -0.149656
+error_rho: 108.783875 error_theta: -0.149656
+Sign: -1
+steering: 1944 steer: 1944.250376
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 108.783875 error_theta_l: -0.149656
+error_rho: 108.783875 error_theta: -0.149656
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 49.001705 1.971515 164.442505 1.856194
+Sign: -1
+steering: 1977 steer: 1977.151692
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 115.440800 error_theta_l: -0.115321
+error_rho: 115.440800 error_theta: -0.115321
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 43.910915 1.971180 164.442505 1.856194
+Sign: -1
+steering: 2001 steer: 2001.094126
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 120.531590 error_theta_l: -0.114986
+error_rho: 120.531590 error_theta: -0.114986
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 35.260677 1.962721 164.442505 1.856194
+Sign: -1
+steering: 2042 steer: 2042.147822
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 129.181828 error_theta_l: -0.106527
+error_rho: 129.181828 error_theta: -0.106527
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 27.275345 1.938236 164.442505 1.856194
+Sign: -1
+steering: 2060 steer: 2060.000000
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 137.167160 error_theta_l: -0.082042
+error_rho: 137.167160 error_theta: -0.082042
+JUnction is true
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 13.934899 1.972073 164.442505 1.856194
+Sign: -1
+steering: 2060 steer: 2060.000000
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 150.507606 error_theta_l: -0.115879
+error_rho: 150.507606 error_theta: -0.115879
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 12.932167 1.985246 164.442505 1.856194
+Sign: -1
+steering: 2060 steer: 2060.000000
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 151.510338 error_theta_l: -0.129052
+error_rho: 151.510338 error_theta: -0.129052
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 16.128517 2.000893 164.442505 1.856194
+Sign: -1
+steering: 2060 steer: 2060.000000
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 148.313988 error_theta_l: -0.144699
+error_rho: 148.313988 error_theta: -0.144699
+Right: 0.000000 0.000000 152.939651 0.285398
+Left: 13.669740 2.008923 164.442505 1.856194
+Sign: -1
+steering: 2060 steer: 2060.000000
+error_rho_r: -152.939651 error_theta_r: -0.285398
+error_rho_l: 150.772765 error_theta_l: -0.152729
+error_rho: 150.772765 error_theta: -0.152729
+
+----------------------------------------------
+INICIA EL FALLO
+----------------------------------------------
+Right: 2.828445 -1.152572 152.939651 0.285398
+Left: 0.000000 0.000000 164.442505 1.856194
+Sign: -1
+steering: 962 steer: 962.202448
+error_rho_r: -150.111206 error_theta_r: 4.845215
+error_rho_l: 164.442505 error_theta_l: 1.856194
+error_rho: -150.111206 error_theta: 4.845215
