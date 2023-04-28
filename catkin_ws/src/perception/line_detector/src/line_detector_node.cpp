@@ -198,8 +198,8 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
                                  cv::LINE_AA);                  
                                                     
            } else 
-           if ((theta > -(M_PI/2 + 0.11) && theta < -(M_PI/2-0.04)) 
-             || (theta > (M_PI/2-0.04) && theta < (M_PI/2 + 0.11))){
+           if ((theta > -(M_PI/2 + 0.138) && theta < -(M_PI/2-0.068)) 
+             || (theta > (M_PI/2-0.068) && theta < (M_PI/2 + 0.138))){
               //fprintf(stdout, "theta %lf\n", theta);
               //fflush(stdout); 
               cv::line( temp_color, cv::Point(x1, y1), 
@@ -313,9 +313,9 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
        // cv::imshow("red_sat_binary", rs_binary);    
 
        //cv::imshow("Temp_output", temp_output);          
-       //cv::imshow("Temp color", temp_color); 
+       cv::imshow("Temp color", temp_color); 
        //cv::imshow("Temp canny", temp_canny);                                    
-       //cv::waitKey(200); 
+       cv::waitKey(200); 
 
 
   // End image processing 

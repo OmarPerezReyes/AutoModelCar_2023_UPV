@@ -25,6 +25,8 @@ double goal_theta_r = 0.0; // Golden reference right
 double rho_r = 0.0;
 double theta_r = 0.0;
 
+bool flagg = true;
+
 double goal_rho_l = 0.0; // Golden reference left
 double goal_theta_l = 0.0; // Golden reference left
 double rho_l = 0.0;
@@ -58,7 +60,6 @@ void my_handler(sig_atomic_t s){
 }
 
 void junctionCallback(const std_msgs::Bool msg){
-  int speed;
 
    road_junction = msg.data;
 
@@ -206,11 +207,11 @@ int main(int argc, char* argv[]){
        fprintf(stdout, "Sign: %d\n", sign);
        fflush(stdout);
 */
-       if (rho_l != 0){
+      /* if (rho_l != 0){
           error_rho   = error_rho_l;
           error_theta = error_theta_l;       
           sign = 1;
-       }  
+       } */ 
 	
        // error_rho: -65.729876 error_theta: 0.191362
        steer = k_rho * error_rho + k_theta * error_theta;   
@@ -232,13 +233,42 @@ int main(int argc, char* argv[]){
    
      } // if (theta_r != 0 || theta_l != 0)  
 
-     if (road_junction){
+     if (road_junction && flagg ==true){
 
        fprintf(stdout, "Junction is true\n");
-       fflush(stdout);   
-       steering = STEERING_CENTER;
+       fflush(stdout);
+speed = 0;  
+        speedMsg.value = speed;
+        pubSpeed.publish(speedMsg);
+        mssleep(500); 
+  steering = 880;
+steeringMsg.value = static_cast<int16_t>(steering);
+        pubSteering.publish(steeringMsg);
+       mssleep(4000);
+
+speed = 40;  
+        speedMsg.value = speed;
+        pubSpeed.publish(speedMsg);
+       mssleep(4000);
+
+steering = 1440;
+steeringMsg.value = static_cast<int16_t>(steering);
+        pubSteering.publish(steeringMsg);
+       mssleep(800);
+
+steering = 2060;
+steeringMsg.value = static_cast<int16_t>(steering);
+        pubSteering.publish(steeringMsg);
+       mssleep(6000);
+
+steering = 1440;
+
+steeringMsg.value = static_cast<int16_t>(steering);
+        pubSteering.publish(steeringMsg);
        mssleep(500);
-     }
+flagg=false;
+continue; 
+    }
 
      autominy_msgs::SteeringPWMCommand steeringMsg;
      steeringMsg.value = static_cast<int16_t>(steering);
