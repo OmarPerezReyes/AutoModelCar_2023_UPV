@@ -18,8 +18,8 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg)
     }
     video.write(color);
 
-    cv::imshow("img", color);
-    cv::waitKey(1);
+    //cv::imshow("img", color);
+    //cv::waitKey(1);
 }
 int main(int argc, char** argv)
 {

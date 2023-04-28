@@ -289,11 +289,9 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
 
 
 
-       fprintf(stdout, "right avr rho: %lf right avr theta: %lf\n",
-                  right_mean_rho, right_mean_theta);
-       fprintf(stdout, "left avr rho: %lf left avr theta: %lf\n",
-                  left_mean_rho, left_mean_theta);
-       fflush(stdout);         
+       //fprintf(stdout, "right avr rho: %lf right avr theta: %lf\n", right_mean_rho, right_mean_theta);
+       //fprintf(stdout, "left avr rho: %lf left avr theta: %lf\n", left_mean_rho, left_mean_theta);
+       //fflush(stdout);         
       
        // right avr rho: 202.939646 right avr theta: 0.785398
        // left avr rho: 214.442498 left avr theta: 2.356194
@@ -315,9 +313,9 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
        // cv::imshow("red_sat_binary", rs_binary);    
 
        //cv::imshow("Temp_output", temp_output);          
-       cv::imshow("Temp color", temp_color); 
+       //cv::imshow("Temp color", temp_color); 
        //cv::imshow("Temp canny", temp_canny);                                    
-       cv::waitKey(200); 
+       //cv::waitKey(200); 
 
 
   // End image processing 

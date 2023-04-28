@@ -116,9 +116,9 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
                            intvls, sigma, contr_thr, curv_thr, img_dbl,
                            descr_width, descr_hist_bins );
 
-    fprintf( stdout, "Found %d features in the current view.\n",
-               num_current_feat);
-    fflush(stdout);
+    //fprintf( stdout, "Found %d features in the current view.\n",
+               //num_current_feat);
+    //fflush(stdout);
 
     if (num_current_feat > 0){
     
@@ -155,7 +155,7 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
     } // (num_current_feat > 0)
    
    
-    if ( matches > 7){
+    if ( matches >= 4){
        bool_msg.data = true; // stop
                
     }
@@ -165,13 +165,13 @@ void imageCallback(const sensor_msgs::Image::ConstPtr& msg){
     bool_msg.data = false; // go
 
     // Display elapsed time  
-    fprintf (stdout, "Detection loop took %.2f s\n", elapsed_time()); 
-    fflush(stdout);
+    //fprintf (stdout, "Detection loop took %.2f s\n", elapsed_time()); 
+    //fflush(stdout);
 
     draw_features( orig->image, current_feat, num_current_feat );
 
-    cv::imshow("Original image", orig->image);         
-    cv::waitKey(1); 
+    //cv::imshow("Original image", orig->image);         
+    //cv::waitKey(1); 
  
 }
 
@@ -201,8 +201,8 @@ int main(int argc, char **argv){
   iplimage.imageData = new char[iplimage.imageSize];  
   iplimage.imageDataOrigin = iplimage.imageData;
 
-  fprintf(stdout, "Reading keypoint DB... ");
-  fflush(stdout); 
+  //fprintf(stdout, "Reading keypoint DB... ");
+  //fflush(stdout); 
 
   int i;
   char path[MAX_STRING_LENGTH];
@@ -213,15 +213,15 @@ int main(int argc, char **argv){
      strcat(path, ".key");
      if ((num_sign_features[i] = import_features( path, feature_type,
             &sign_feat[i])) == -1){
-        fprintf(stdout, 
-               "Error: cannot find file %s\n continuing...\n", path);
-        fflush(stdout);          
+        //fprintf(stdout, 
+               //"Error: cannot find file %s\n continuing...\n", path);
+        //fflush(stdout);          
         continue; 
      } 
   } // for    
 
-  fprintf(stdout, "Done.");
-  fflush(stdout); 
+  //fprintf(stdout, "Done.");
+  //fflush(stdout); 
 
   ros::Subscriber sub = n.subscribe("/realsense/color_raw", 1, imageCallback);
   pub_stop = n.advertise<std_msgs::Bool>("/bool_stop", 1);

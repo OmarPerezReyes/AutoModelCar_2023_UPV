@@ -70,11 +70,11 @@ void stopCallback(const std_msgs::Bool msg){
   int speed;
 
   if (msg.data){
-        mssleep(3500);
+        mssleep(3000);
         speed = 0;  
         speedMsg.value = speed;
         pubSpeed.publish(speedMsg);
-        mssleep(4500);
+        mssleep(5000);
   } else {
         speed = MAX_SPEED;  
         speedMsg.value = speed;
@@ -116,9 +116,8 @@ void left_line_callback(const std_msgs::Float32MultiArray::ConstPtr& msg){
   goal_rho_l = msg->data[2]; // Golden reference right
   goal_theta_l = msg->data[3]; // Golden reference right
 
-  fprintf(stdout, "Left: %lf %lf %lf %lf\n",
-                  msg->data[0], msg->data[1], msg->data[2], msg->data[3]);  
-  fflush(stdout);               
+  //fprintf(stdout, "Left: %lf %lf %lf %lf\n", msg->data[0], msg->data[1], msg->data[2], msg->data[3]);  
+  //fflush(stdout);               
 
 }
 
@@ -182,7 +181,7 @@ int main(int argc, char* argv[]){
        error_theta_r = theta_r - goal_theta_r;
        error_rho_l = goal_rho_l - rho_l;
        error_theta_l = goal_theta_l - theta_l;
-
+/*
        fprintf(stdout, "rho_r: %lf\n", rho_r);
        fprintf(stdout, "theta_r: %lf\n", theta_r);
        fprintf(stdout, "goal_rho_r: %lf\n", goal_rho_r);
@@ -190,23 +189,23 @@ int main(int argc, char* argv[]){
        fprintf(stdout, "error_rho_r: %lf\n", error_rho_r);
        fprintf(stdout, "error_theta_r: %lf\n", error_theta_r);
        fflush(stdout);
-
+*/
        //error_rho = 0.0;
        //error_theta = 0.0;       
   
        error_rho  = error_rho_r;
        error_theta = error_theta_r;  
-
+/*
        fprintf(stdout, "error_rho: %lf\n", error_rho);
        fprintf(stdout, "error_theta: %lf\n", error_theta);
        fflush(stdout);
-
+*/
        int sign = 1;
        if (theta_r < 0) sign = -1;
-
+/*
        fprintf(stdout, "Sign: %d\n", sign);
        fflush(stdout);
-
+*/
        if (rho_l != 0){
           error_rho   = error_rho_l;
           error_theta = error_theta_l;       
@@ -217,17 +216,17 @@ int main(int argc, char* argv[]){
        steer = k_rho * error_rho + k_theta * error_theta;   
        steer *= 100;
        steer *= 47;
-
+/*
        fprintf(stdout, "Steer original: %lf\n", steer);
        fflush(stdout);
-
+*/
        steer = STEERING_CENTER + sign * steer;
 
        steering = round(steer);
 
        if (steering > 2060) steering = 2060;
        if (steering < 880) steering = 880;
-       
+     
        fprintf(stdout, "steering: %d steer: %lf\n", steering, steer);
        fflush(stdout);
    
