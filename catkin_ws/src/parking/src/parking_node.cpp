@@ -85,7 +85,7 @@ int main(int argc, char* argv[]){
   steering = STEERING_CENTER;
 steeringMsg.value = static_cast<int16_t>(steering);
         pubSteering.publish(steeringMsg);
-       mssleep(11000);
+       mssleep(14650);
 
 
     speed = 0;
@@ -93,31 +93,17 @@ steeringMsg.value = static_cast<int16_t>(steering);
     pubSpeed.publish(speedMsg);
     mssleep(500);
 
-
-//izq
-
-    fprintf(stdout, "Izq\n");
-    fflush(stdout);
-    steering = 900;
-    steeringMsg.value = static_cast<int16_t>(steering);
-    pubSteering.publish(steeringMsg);
-    mssleep(500);
-    speed = MAX_SPEED;
-    speedMsg.value = speed;
-    pubSpeed.publish(speedMsg);
-    mssleep(2500);
-
 //derecha
     fprintf(stdout, "Izq\n");
     fflush(stdout);
-    steering = 2000;
+    steering = 2050;
     steeringMsg.value = static_cast<int16_t>(steering);
     pubSteering.publish(steeringMsg);
     mssleep(500);
     speed = -MAX_SPEED;
     speedMsg.value = speed;
     pubSpeed.publish(speedMsg);
-    mssleep(3500);
+    mssleep(5500);
 
 //reversa Recta
 
@@ -126,7 +112,7 @@ steeringMsg.value = static_cast<int16_t>(steering);
     steering = 1440;
     steeringMsg.value = static_cast<int16_t>(steering);
     pubSteering.publish(steeringMsg);
-    mssleep(1900);
+    mssleep(200);
 
     speed = 0;
     speedMsg.value = speed;
