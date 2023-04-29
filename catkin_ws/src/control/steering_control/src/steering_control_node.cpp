@@ -10,7 +10,7 @@
 #include <autominy_msgs/SpeedPWMCommand.h>
 #include <autominy_msgs/SteeringPWMCommand.h>
 
-const int MAX_SPEED = 40;
+const int MAX_SPEED = 133;
 const int sleep_msec = 200;
 const int STEERING_CENTER = 1440;
 
@@ -108,6 +108,7 @@ void right_line_callback(const std_msgs::Float32MultiArray::ConstPtr& msg){
                    msg->data[0], msg->data[1], msg->data[2], msg->data[3]);
   fflush(stdout);            
 
+
 }
 
 void left_line_callback(const std_msgs::Float32MultiArray::ConstPtr& msg){
@@ -117,8 +118,8 @@ void left_line_callback(const std_msgs::Float32MultiArray::ConstPtr& msg){
   goal_rho_l = msg->data[2]; // Golden reference right
   goal_theta_l = msg->data[3]; // Golden reference right
 
-  //fprintf(stdout, "Left: %lf %lf %lf %lf\n", msg->data[0], msg->data[1], msg->data[2], msg->data[3]);  
-  //fflush(stdout);               
+  fprintf(stdout, "Left: %lf %lf %lf %lf\n", msg->data[0], msg->data[1], msg->data[2], msg->data[3]);  
+  fflush(stdout);               
 
 }
 
@@ -207,11 +208,11 @@ int main(int argc, char* argv[]){
        fprintf(stdout, "Sign: %d\n", sign);
        fflush(stdout);
 */
-      /* if (rho_l != 0){
+       if (rho_l != 0){
           error_rho   = error_rho_l;
           error_theta = error_theta_l;       
           sign = 1;
-       } */ 
+       }  
 	
        // error_rho: -65.729876 error_theta: 0.191362
        steer = k_rho * error_rho + k_theta * error_theta;   
@@ -237,29 +238,22 @@ int main(int argc, char* argv[]){
 
        fprintf(stdout, "Junction is true\n");
        fflush(stdout);
-speed = 0;  
-        speedMsg.value = speed;
-        pubSpeed.publish(speedMsg);
-        mssleep(500); 
+       mssleep(450);
   steering = 880;
 steeringMsg.value = static_cast<int16_t>(steering);
         pubSteering.publish(steeringMsg);
-       mssleep(4000);
+       mssleep(500);
 
-speed = 40;  
-        speedMsg.value = speed;
-        pubSpeed.publish(speedMsg);
-       mssleep(4000);
 
-steering = 1440;
+steering = 1460;
 steeringMsg.value = static_cast<int16_t>(steering);
         pubSteering.publish(steeringMsg);
-       mssleep(800);
+       mssleep(900);
 
-steering = 2060;
+steering = 1550;
 steeringMsg.value = static_cast<int16_t>(steering);
         pubSteering.publish(steeringMsg);
-       mssleep(6000);
+       mssleep(3000);
 
 steering = 1440;
 
