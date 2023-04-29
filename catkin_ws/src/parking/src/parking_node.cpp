@@ -12,7 +12,7 @@
 
 const int MAX_SPEED = 50;
 const int sleep_msec = 200;
-const int STEERING_CENTER = 1440;
+const int STEERING_CENTER = 1420;
 
 ros::Publisher pubSpeed;
 ros::Publisher pubSteering;
@@ -85,7 +85,7 @@ int main(int argc, char* argv[]){
   steering = STEERING_CENTER;
 steeringMsg.value = static_cast<int16_t>(steering);
         pubSteering.publish(steeringMsg);
-       mssleep(14650);
+       mssleep(15900);
 
 
     speed = 0;
@@ -96,14 +96,14 @@ steeringMsg.value = static_cast<int16_t>(steering);
 //derecha
     fprintf(stdout, "Izq\n");
     fflush(stdout);
-    steering = 2050;
+    steering = 2060;
     steeringMsg.value = static_cast<int16_t>(steering);
     pubSteering.publish(steeringMsg);
     mssleep(500);
     speed = -MAX_SPEED;
     speedMsg.value = speed;
     pubSpeed.publish(speedMsg);
-    mssleep(5500);
+    mssleep(6000);
 
 //reversa Recta
 
@@ -112,7 +112,7 @@ steeringMsg.value = static_cast<int16_t>(steering);
     steering = 1440;
     steeringMsg.value = static_cast<int16_t>(steering);
     pubSteering.publish(steeringMsg);
-    mssleep(200);
+    mssleep(550);
 
     speed = 0;
     speedMsg.value = speed;
